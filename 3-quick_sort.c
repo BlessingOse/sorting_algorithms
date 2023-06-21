@@ -10,10 +10,10 @@
  */
 void quick_sort(int *array, size_t size)
 {
-	_qsort(array, 0, size - 1, size);
+	_quicksort(array, 0, size - 1, size);
 }
 /**
- * _qsort - auxiliar function for the
+ * _quicksort - auxiliar function for the
  * quick_sort function
  * @a: input arrray
  * @low: index for the first element
@@ -21,7 +21,7 @@ void quick_sort(int *array, size_t size)
  * @size: size of the array
  * Return: no return
  */
-void _qsort(int *a, int low, int high, int size)
+void _quicksort(int *a, int low, int high, int size)
 {
 	int p, w, i;
 	int tmp;
@@ -51,7 +51,7 @@ void _qsort(int *a, int low, int high, int size)
 			a[p] = tmp;
 			print_array(a, size);
 		}
-		_qsort(a, low, w - 1, size);
-		_qsort(a, w + 1, high, size);
+		_quicksort(a, low, w - 1, size);
+		_quicksort(a, w + 1, high, size);
 	}
 }

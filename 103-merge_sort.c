@@ -1,14 +1,14 @@
 #include "sort.h"
 #include <stdio.h>
 /**
- * print_data - print data
+ * output_data - print data
  * @msg: message
  * @a: array
  * @from: from
  * @to: to
  * Return: no return
  */
-void print_data(char *msg, int *a, int from, int to)
+void output_data(char *msg, int *a, int from, int to)
 {
 	char *sep;
 	int i;
@@ -25,7 +25,7 @@ void print_data(char *msg, int *a, int from, int to)
 }
 
 /**
- * merge - Auxiliar function for
+ * jux - Auxiliar function for
  * Merge sort algorithm
  * @a: array
  * @low: low index
@@ -34,7 +34,7 @@ void print_data(char *msg, int *a, int from, int to)
  * @buff: buffer
  * Return: no return
  */
-void merge(int *a, int low, int middle, int high, int *buff)
+void jux(int *a, int low, int middle, int high, int *buff)
 {
 	int lo, lm, i;
 
@@ -42,8 +42,8 @@ void merge(int *a, int low, int middle, int high, int *buff)
 	lm = middle + 1;
 
 	printf("Merging...\n");
-	print_data("left", a, low, middle);
-	print_data("right", a, middle + 1, high);
+	output_data("left", a, low, middle);
+	output_data("right", a, middle + 1, high);
 
 	while (lo <= middle && lm <= high)
 	{
@@ -62,10 +62,10 @@ void merge(int *a, int low, int middle, int high, int *buff)
 	for (i = low; i <= high; i++)
 		a[i] = buff[i];
 
-	print_data("Done", a, low, high);
+	output_data("Done", a, low, high);
 }
 /**
- * msort -Auxiliar function for
+ * mergesort -Auxiliar function for
  * Merge sort algorithm
  * @array: array
  * @low: low index
@@ -73,16 +73,16 @@ void merge(int *a, int low, int middle, int high, int *buff)
  * @buffer: buffer
  * Return: no return
  */
-void msort(int *array, int low, int high, int *buffer)
+void mergesort(int *array, int low, int high, int *buffer)
 {
 	int midle;
 
 	if (low < high)
 	{
 		midle = (low + high - 1) / 2;
-		msort(array, low, midle, buffer);
-		msort(array, midle + 1, high, buffer);
-		merge(array, low, midle, high, buffer);
+		mergesort(array, low, midle, buffer);
+		mergesort(array, midle + 1, high, buffer);
+		jux(array, low, midle, high, buffer);
 	}
 }
 /**
@@ -100,6 +100,6 @@ void merge_sort(int *array, size_t size)
 	buffer = malloc(sizeof(int) * size);
 	if (!buffer)
 		return;
-	msort(array, 0, size - 1, buffer);
+	mergesort(array, 0, size - 1, buffer);
 	free(buffer);
 }

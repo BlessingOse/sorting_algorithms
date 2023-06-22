@@ -1,14 +1,14 @@
 #include "sort.h"
 #include <stdio.h>
 /**
- * swap_nums - swaps numbers
+ * exch_nums - swaps numbers
  *
  * @arr: input array
  * @a: first index
  * @b: second index
  * Return: no return
  */
-void swap_nums(int *arr, int a, int b)
+void exch_nums(int *arr, int a, int b)
 {
 	arr[a] = arr[a] + arr[b];
 	arr[b] = arr[a] - arr[b];
@@ -16,7 +16,7 @@ void swap_nums(int *arr, int a, int b)
 }
 
 /**
- * recursion_heap - recursion that builds the max heap tree
+ * repeat_heap - recursion that builds the max heap tree
  *
  * @arr: input array
  * @i: index number
@@ -24,7 +24,7 @@ void swap_nums(int *arr, int a, int b)
  * @limit: limit of the array
  * Return: no return
  */
-void recursion_heap(int *arr, int i, size_t size, int limit)
+void repeat_heap(int *arr, int i, size_t size, int limit)
 {
 	int bigger;
 	int i2;
@@ -33,8 +33,8 @@ void recursion_heap(int *arr, int i, size_t size, int limit)
 
 	if (i2 + 2 < limit)
 	{
-		recursion_heap(arr, i2 + 1, size, limit);
-		recursion_heap(arr, i2 + 2, size, limit);
+		repeat_heap(arr, i2 + 1, size, limit);
+		repeat_heap(arr, i2 + 2, size, limit);
 	}
 
 	if (i2 + 1 >= limit)
@@ -47,9 +47,9 @@ void recursion_heap(int *arr, int i, size_t size, int limit)
 
 	if (arr[i] < arr[bigger])
 	{
-		swap_nums(arr, i, bigger);
+		exch_nums(arr, i, bigger);
 		print_array(arr, size);
-		recursion_heap(arr, bigger, size, limit);
+		repeat_heap(arr, bigger, size, limit);
 	}
 }
 
@@ -73,10 +73,10 @@ void heap_sort(int *array, size_t size)
 
 	while (limit > 1)
 	{
-		recursion_heap(array, i, size, limit);
+		repeat_heap(array, i, size, limit);
 		if (array[i] >= array[limit - 1])
 		{
-			swap_nums(array, i, limit - 1);
+			exch_nums(array, i, limit - 1);
 			print_array(array, size);
 		}
 		limit--;
